@@ -19,6 +19,7 @@
 #include "components/datetime/DateTimeController.h"
 #include "components/fs/FS.h"
 #include "systemtask/SystemTask.h"
+#include "components/ble/AppleNotificationCenterService.h"
 
 using namespace Pinetime::Controllers;
 
@@ -37,10 +38,10 @@ NimbleController::NimbleController(Pinetime::System::SystemTask& systemTask,
     spiNorFlash {spiNorFlash},
     fs {fs},
     dfuService {systemTask, bleController, spiNorFlash},
-
     currentTimeClient {dateTimeController},
     anService {systemTask, notificationManager},
     alertNotificationClient {systemTask, notificationManager},
+    appleNotificationCenterService {systemTask, notificationManager},
     currentTimeService {dateTimeController},
     musicService {*this},
     weatherService {dateTimeController},
@@ -92,6 +93,7 @@ void NimbleController::Init() {
   weatherService.Init();
   navService.Init();
   anService.Init();
+  appleNotificationCenterService.Init();
   dfuService.Init();
   batteryInformationService.Init();
   immediateAlertService.Init();
