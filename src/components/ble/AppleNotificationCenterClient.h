@@ -8,6 +8,7 @@
 #undef max
 #undef min
 #include "components/ble/BleClient.h"
+#include <nrfx_log.h>
 
 namespace Pinetime {
 
